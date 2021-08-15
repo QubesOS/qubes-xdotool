@@ -5,7 +5,7 @@ Release:        11%{?dist}
 Summary:        Fake keyboard/mouse input
 License:        BSD
 URL:            http://www.semicomplete.com/projects/xdotool/
-Source0:        https://github.com/jordansissel/xdotool/archive/%{name}-%{version}.tar.gz
+Source0:        https://github.com/jordansissel/xdotool/releases/download/v%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:  gcc
 BuildRequires:  libXtst-devel, libX11-devel, libXinerama-devel, libXi-devel, /usr/bin/pod2man, libxkbcommon-devel
