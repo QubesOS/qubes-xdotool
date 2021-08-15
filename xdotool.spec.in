@@ -1,0 +1,62 @@
+Name:           xdotool
+Version:        @VERSION@
+Epoch:          1
+Release:        @REL@%{?dist}
+Summary:        Fake keyboard/mouse input
+License:        BSD
+URL:            http://www.semicomplete.com/projects/xdotool/
+Source0:        https://github.com/jordansissel/xdotool/releases/download/v%{version}/%{name}-%{version}.tar.gz
+
+BuildRequires:  gcc
+BuildRequires:  libXtst-devel, libX11-devel, libXinerama-devel, libXi-devel, /usr/bin/pod2man, libxkbcommon-devel
+
+%description
+This tool lets you programmatically (or manually) simulate keyboard input
+and mouse activity, move and re-size windows, etc.
+
+%package -n libxdo
+Summary: Keyboard input simulation library
+                                                                                                                                                                                  
+%description -n libxdo
+This library contains functions to simulate keyboard and mouse input
+
+%package -n libxdo-devel
+Summary:        Development files for libxdo
+Requires:       libxdo = %{epoch}:%{version}-%{release}
+
+%description -n libxdo-devel
+The libxdo-devel package contains libraries and header files for
+developing applications that use libxdo
+
+%prep
+%setup -q
+
+%build
+export WARNFLAGS="$RPM_OPT_FLAGS"
+make %{?_smp_mflags}
+
+
+%install
+rm -rf $RPM_BUILD_ROOT
+make PREFIX=$RPM_BUILD_ROOT/%{_prefix} INSTALLMAN=$RPM_BUILD_ROOT%{_mandir} INSTALLLIB=$RPM_BUILD_ROOT%{_libdir} install
+
+#fix permissions
+chmod 0644 examples/ffsp.sh
+
+%ldconfig_scriptlets -n libxdo
+
+%files -n libxdo
+%doc CHANGELIST COPYRIGHT README
+%{_libdir}/*.so.*
+
+%files -n libxdo-devel
+%{_includedir}/*
+%{_libdir}/*.so
+
+%files
+%{_bindir}/%{name}
+%{_mandir}/man1/%{name}.1*
+%doc examples
+
+%changelog
+@CHANGELOG@
