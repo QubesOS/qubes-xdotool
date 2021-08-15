@@ -46,12 +46,13 @@ chmod 0644 examples/ffsp.sh
 %ldconfig_scriptlets -n libxdo
 
 %files -n libxdo
-%doc CHANGELIST COPYRIGHT README
+%doc CHANGELIST COPYRIGHT README.md
 %{_libdir}/*.so.*
 
 %files -n libxdo-devel
 %{_includedir}/*
 %{_libdir}/*.so
+%{_libdir}/pkgconfig/*
 
 %files
 %{_bindir}/%{name}
