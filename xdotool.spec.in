@@ -43,7 +43,7 @@ make PREFIX=$RPM_BUILD_ROOT/%{_prefix} INSTALLMAN=$RPM_BUILD_ROOT%{_mandir} INST
 #fix permissions
 chmod 0644 examples/ffsp.sh
 
-%ldconfig_scriptlets -n libxdo
+%post -n libxdo -p /sbin/ldconfig
 
 %files -n libxdo
 %doc CHANGELIST COPYRIGHT README.md
