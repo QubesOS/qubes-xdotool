@@ -1,6 +1,6 @@
 DIST ?= fc32
-VERSION := $(shell cat version)
-REL := $(shell cat rel)
+VERSION := $(file <version)
+REL := $(file <rel)
 
 FEDORA_SOURCES := https://src.fedoraproject.org/rpms/xdotool/raw/f$(subst fc,,$(DIST))/f/sources
 SRC_FILE := xdotool-$(VERSION).tar.gz
