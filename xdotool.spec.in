@@ -34,7 +34,7 @@ developing applications that use libxdo
 
 %build
 export WARNFLAGS="$RPM_OPT_FLAGS"
-make %{?_smp_mflags}
+make %{?_smp_mflags} WITHOUT_RPATH_FIX=1
 
 
 %install
